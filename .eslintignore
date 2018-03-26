@@ -1,0 +1,8 @@
+*.html
+index.html.template
+dist
+junk
+LICENSE.txt
+package.json
+package-lock.json
+README.md

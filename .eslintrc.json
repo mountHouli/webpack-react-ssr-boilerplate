@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "standard",
+    "plugin:react/recommended"
+  ],
+  "settings": {
+    "react": {
+      "version": "16.2"
+    }
+  },
+  "rules": {
+    "brace-style": ["error", "stroustrup"],
+    "no-console": ["warn", { "allow": ["warn", "error"] }]
+  }
+}
