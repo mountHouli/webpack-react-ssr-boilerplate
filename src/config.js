@@ -1,4 +1,4 @@
 module.exports = {
-  apiUrl: 'http://localhost:3000',
-  port: 3001
+  apiUrl: 'http://localhost:1775',
+  port: 1776
 }
