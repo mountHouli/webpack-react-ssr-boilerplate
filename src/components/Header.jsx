@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { bg_blue, white, h0 } from '../styles/common.css'
+import { bg_blue, white, h0 } from 'Styles/common.css'
 
 // Put a blank face picture where the 'H' is !!
 const Header = () => {

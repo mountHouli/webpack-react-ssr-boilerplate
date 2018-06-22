@@ -122,7 +122,11 @@ const clientConfig = removeEmpty({
   resolve: {
     // Make the webpack resolver look for .jsx files (in addition to defaults),
     // so you can import a .jsx file without specifying the extension
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      Components: path.resolve(__dirname, 'src/components'),
+      Styles: path.resolve(__dirname, 'src/styles')
+    }
   },
   plugins: removeEmpty([
     new CleanWebpackPlugin(
@@ -203,7 +207,11 @@ const ssrConfig = removeEmpty({
   resolve: {
     // Make the webpack resolver look for .jsx files (in addition to defaults),
     // so you can import a .jsx file without specifying the extension
-    extensions: ['.js', '.json', '.jsx']
+    extensions: ['.js', '.json', '.jsx'],
+    alias: {
+      Components: path.resolve(__dirname, 'src/components'),
+      Styles: path.resolve(__dirname, 'src/styles')
+    }
   },
   plugins: [
     // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.

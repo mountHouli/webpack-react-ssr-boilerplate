@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
 
-import App from './components/App'
+import App from 'Components/App'
 import createStore from './state/store.js'
 
 // I don't like this async function here.  Do it a better way. !!

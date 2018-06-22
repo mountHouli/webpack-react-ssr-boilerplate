@@ -3,14 +3,14 @@ import { Route, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { hot } from 'react-hot-loader'
 
-import Home from './Home' // !! fix this
-import Header from './Header'
+import Home from 'Components/Home' // !! fix this
+import Header from 'Components/Header'
 
 // Just need to import global.css once somewhere so its styles end up in the webpack dependency graph.
 // eslint-disable-next-line no-unused-vars
-import globalStyles from '../styles/global.css'
-import { header_height, bg_green, width_100 } from '../styles/common.css'
-// import { side_bars } from '../styles/App.css'
+import globalStyles from 'Styles/global.css'
+import { header_height, bg_green, width_100 } from 'Styles/common.css'
+// import { side_bars } from 'Styles/App.css'
 
 class App extends React.Component {
   render () {

@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
 
-import App from './components/App.jsx'
+import App from 'Components/App.jsx'
 import createStore from './state/store.js'
 
 export default function ssrIndexMiddlewareCreator () {
