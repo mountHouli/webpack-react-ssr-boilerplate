@@ -13,10 +13,10 @@ const { NODE_ENV } = process.env
 const deploymentLevelSpecificConfigs = {
   client: {
     entry: {
-      prod: {
+      production: {
         clientIndex: path.join(__dirname, 'src', 'clientIndex.js')
       },
-      dev: {
+      development: {
         clientIndex: [
           // We only want to use this for the client bundle, because HMR for the server bundle
           // is handled not by webpack-hot-middleware but by webpack-hot-server-middleware
@@ -26,15 +26,15 @@ const deploymentLevelSpecificConfigs = {
       }
     },
     devtool: {
-      prod: undefined,
+      production: undefined,
       // 'cheap-module-eval-source-map' is the fastest type of source map that still
       // almost perfectly preserves the original source files and line numbers.
-      dev: 'cheap-module-eval-source-map'
+      development: 'cheap-module-eval-source-map'
     },
     module: {
       rules: {
-        prod: [
-          // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.
+        production: [
+          // See README.md for explanation of production and development, client and ssr/server style/css -related config.
           {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
@@ -49,8 +49,8 @@ const deploymentLevelSpecificConfigs = {
             })
           }
         ],
-        dev: [
-          // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.
+        development: [
+          // See README.md for explanation of production and development, client and ssr/server style/css -related config.
           {
             test: /\.css$/,
             use: [
@@ -70,14 +70,14 @@ const deploymentLevelSpecificConfigs = {
       }
     },
     plugins: {
-      prod: [
-        // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.
+      production: [
+        // See README.md for explanation of production and development, client and ssr/server style/css -related config.
         new ExtractTextPlugin({
           filename: '[name].bundle.css',
           allChunks: true
         })
       ],
-      dev: [
+      development: [
         // We only want to use this for the client bundle, because HMR for the server bundle
         // is handled not by webpack-hot-middleware but by webpack-hot-server-middleware
         new webpack.HotModuleReplacementPlugin()
@@ -86,10 +86,10 @@ const deploymentLevelSpecificConfigs = {
   },
   ssr: {
     devtool: {
-      prod: undefined,
+      production: undefined,
       // 'cheap-module-eval-source-map' is the fastest type of source map that still
       // almost perfectly preserves the original source files and line numbers.
-      dev: 'cheap-module-eval-source-map'
+      development: 'cheap-module-eval-source-map'
     }
   }
 }
@@ -101,6 +101,7 @@ const { client, ssr } = deploymentLevelSpecificConfigs
 //  - one with name: 'client' for the bundle that gets sent to the browser
 //  - one with name: 'server' for webpack-hot-server-middleware to use for SSR
 const clientConfig = removeEmpty({
+  mode: NODE_ENV,
   name: 'client',
   target: 'web',
   entry: client.entry[NODE_ENV],
@@ -162,6 +163,7 @@ const clientConfig = removeEmpty({
 })
 
 const ssrConfig = removeEmpty({
+  mode: NODE_ENV,
   name: 'server',
   // Causes webpack to use normal 'require()' rather than the webpack require.
   // We want this because this file is for code that will always run on the server.
@@ -189,7 +191,7 @@ const ssrConfig = removeEmpty({
         loader: 'babel-loader'
       },
       {
-        // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.
+        // See README.md for explanation of production and development, client and ssr/server style/css -related config.
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
@@ -214,7 +216,7 @@ const ssrConfig = removeEmpty({
     }
   },
   plugins: [
-    // See README.md for explanation of prod and dev, client and ssr/server style/css -related config.
+    // See README.md for explanation of production and development, client and ssr/server style/css -related config.
     new ExtractTextPlugin({
       filename: '[name].bundle.css',
       allChunks: true

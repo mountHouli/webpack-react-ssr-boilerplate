@@ -1,6 +1,6 @@
 // NOTE:
-// When NODE_ENV=prod, this file will be running in the dist/ dir, and all paths are relative from there
-// When NODE_ENV=src,  this file will be running in the src/ dir, and all paths are relative from there
+// When NODE_ENV=production, this file will be running in the dist/ dir, and all paths are relative from there
+// When NODE_ENV=development, this file will be running in the src/ dir, and all paths are relative from there
 // The same paths work in both places because the path relativity is the same whether in src/ or dist/
 const path = require('path')
 
@@ -11,7 +11,7 @@ const conf = require('./config')
 
 const app = express()
 
-if (process.env.NODE_ENV === 'dev') {
+if (process.env.NODE_ENV === 'development') {
   const webpack = require('webpack')
   const webpackDevMiddleware = require('webpack-dev-middleware')
   const webpackHotMiddleware = require('webpack-hot-middleware')
@@ -37,7 +37,7 @@ if (process.env.NODE_ENV === 'dev') {
   // This does what app.use(ssrIndexMiddleware()) does in production.
   app.use(webpackHotServerMiddleware(compiler, { chunkName: 'ssrIndex' }))
 }
-else if (process.env.NODE_ENV === 'prod') {
+else if (process.env.NODE_ENV === 'production') {
   const ssrIndexMiddleware = require('./ssrIndex.bundle.js').default()
 
   app.use(express.static(path.resolve(__dirname, 'public')))
@@ -45,7 +45,7 @@ else if (process.env.NODE_ENV === 'prod') {
   app.use(ssrIndexMiddleware)
 }
 else {
-  throw new Error('You must specify NODE_ENV = either "prod" or "dev".  Script exiting...')
+  throw new Error('You must specify webpack mode of either "production" or "development", but it\'s not.  Script exiting...')
 }
 
 app.listen(conf.port, (err) => {

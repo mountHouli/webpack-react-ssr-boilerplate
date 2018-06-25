@@ -10,3 +10,7 @@ Dev:
 
 `npm start`
 
+## To-Do
+
+- Define this error in a common place.  throw new Error('You must specify webpack mode of either "production" or "development", but it\'s not.  Script exiting...')
+
