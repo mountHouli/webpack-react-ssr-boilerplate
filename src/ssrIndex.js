@@ -6,7 +6,7 @@ import ReactDOMServer from 'react-dom/server'
 import { Provider } from 'react-redux'
 import { StaticRouter } from 'react-router'
 
-import conf from './config'
+import ssrConfig from './ssrConfig'
 import App from 'Components/App.jsx'
 import createStore from './state/store.js'
 
@@ -43,10 +43,10 @@ export default function ssrIndexMiddlewareCreator () {
 function ssrIndexHtmlGenerator (reactRootContent) {
   const html =
 `<head>
-  <link rel="stylesheet" href="${conf.fontAwesomeUrl}" />
-  <link rel="stylesheet" href="${conf.basscssUrl}"/>
+  <link rel="stylesheet" href="${ssrConfig.fontAwesomeUrl}" />
+  <link rel="stylesheet" href="${ssrConfig.basscssUrl}"/>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:500,700"/>
-  ${conf.cssBundleMarkup}
+  ${ssrConfig.cssBundleMarkup}
 </head>
 <body>
   <div id="react_root">${reactRootContent}</div>
