@@ -96,8 +96,8 @@ const deploymentLevelSpecificConfigs = {
 
 const { client, ssr } = deploymentLevelSpecificConfigs
 
-// In order to work with webpack-hot-server-middleware, module.exports must =
-// array with two members
+// In order to work with webpack-hot-server-middleware, module.exports must be
+// an array with two members
 //  - one with name: 'client' for the bundle that gets sent to the browser
 //  - one with name: 'server' for webpack-hot-server-middleware to use for SSR
 const clientConfig = removeEmpty({
